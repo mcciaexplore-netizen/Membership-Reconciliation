@@ -162,10 +162,10 @@ function App() {
                       >
                         {
                           [
-                            { name: 'Matched', value: result.summary.matched_records, color: '#10b981' },
-                            { name: 'Unmatched Bank', value: result.summary.unmatched_bank, color: '#ef4444' },
-                            { name: 'Unmatched Backend', value: result.summary.unmatched_backend, color: '#f59e0b' },
-                            { name: 'Partial', value: result.summary.partial_discrepant, color: '#eab308' }
+                            { name: 'Matched', value: result.summary.matched_count, color: '#10b981' },
+                            { name: 'Unmatched Bank', value: result.summary.unmatched_bank_count, color: '#ef4444' },
+                            { name: 'Unmatched Backend', value: result.summary.unmatched_backend_count, color: '#f59e0b' },
+                            { name: 'Partial', value: result.summary.partial_count, color: '#eab308' }
                           ].filter(d => d.value > 0).map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
                           ))
