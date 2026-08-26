@@ -6,11 +6,18 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 # ROOT is now the api folder (where config and src live)
+import sys
 ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
 
-from src.ingest import load_config
-from src.matcher import reconcile
-from src.reporter import write_report
+import_error = None
+try:
+    from src.ingest import load_config
+    from src.matcher import reconcile
+    from src.reporter import write_report
+except Exception as e:
+    import traceback
+    import_error = traceback.format_exc()
 
 app = FastAPI()
 
@@ -27,7 +34,10 @@ app.add_middleware(
 @app.get("/api/index.py")
 @app.get("/api/index")
 def health_check():
+    if import_error:
+        return {"status": "error", "message": import_error}
     return {"status": "ok", "message": "Membership Reconciliation Engine is running."}
+
 
 
 @app.post("/api/reconcile")
@@ -37,6 +47,9 @@ async def reconcile_files(
     bank_file: UploadFile = File(...),
     backend_file: UploadFile = File(...)
 ):
+    if import_error:
+        raise HTTPException(status_code=500, detail=f"Import error during initialization: {import_error}")
+    
     try:
         # Load raw bytes
         bank_bytes = await bank_file.read()
