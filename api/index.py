@@ -143,5 +143,19 @@ from fastapi import Request
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST"])
 async def catch_all(request: Request, full_path: str):
-    return {"detail": "Catch-all reached", "path": full_path, "url": str(request.url)}
+    scope = dict(request.scope)
+    # remove un-serializable objects
+    scope.pop("app", None)
+    scope.pop("fastapi_astack", None)
+    scope.pop("router", None)
+    scope.pop("endpoint", None)
+    
+    headers = dict(request.headers)
+    return {
+        "detail": "Catch-all reached",
+        "path": full_path,
+        "url": str(request.url),
+        "scope": str(scope),
+        "headers": headers
+    }
 
