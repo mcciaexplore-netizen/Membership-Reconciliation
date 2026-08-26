@@ -30,7 +30,14 @@ function App() {
       });
       setResult(res.data);
     } catch (err: any) {
-      setError(err.response?.data?.detail || "An error occurred during reconciliation.");
+      console.error(err);
+      if (err.response) {
+        setError(`Server Error (${err.response.status}): ${err.response.data?.detail || typeof err.response.data === 'string' ? err.response.data.substring(0, 100) : "Unknown error"}`);
+      } else if (err.request) {
+        setError("Network error: Could not reach the server.");
+      } else {
+        setError(`Error: ${err.message}`);
+      }
     } finally {
       setLoading(false);
     }
