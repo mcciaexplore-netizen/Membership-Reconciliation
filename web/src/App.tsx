@@ -72,7 +72,7 @@ function App() {
         <div className="mb-6">
           <label className="block text-sm font-medium text-slate-300 mb-2">Bank Statement (CSV / Excel)</label>
           <div className="border border-dashed border-slate-600 rounded-xl bg-slate-800 p-6 flex flex-col items-center justify-center transition-colors hover:border-blue-500 hover:bg-slate-750 relative overflow-hidden group">
-            <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onChange={(e) => setBankFile(e.target.files?.[0] || null)} />
+            <input type="file" accept=".csv, .xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onChange={(e) => setBankFile(e.target.files?.[0] || null)} />
             <span className="text-white font-semibold text-[15px] mb-2 flex items-center gap-2">
               <UploadCloud className="w-5 h-5" /> Upload
             </span>
@@ -86,7 +86,7 @@ function App() {
         <div className="mb-8">
           <label className="block text-sm font-medium text-slate-300 mb-2">Backend Membership Data (CSV / Excel)</label>
           <div className="border border-dashed border-slate-600 rounded-xl bg-slate-800 p-6 flex flex-col items-center justify-center transition-colors hover:border-blue-500 hover:bg-slate-750 relative overflow-hidden group">
-            <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onChange={(e) => setBackendFile(e.target.files?.[0] || null)} />
+            <input type="file" accept=".csv, .xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onChange={(e) => setBackendFile(e.target.files?.[0] || null)} />
             <span className="text-white font-semibold text-[15px] mb-2 flex items-center gap-2">
               <UploadCloud className="w-5 h-5" /> Upload
             </span>
