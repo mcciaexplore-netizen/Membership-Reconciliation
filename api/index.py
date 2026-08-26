@@ -37,9 +37,6 @@ def health_check():
     if import_error:
         return {"status": "error", "message": import_error}
     return {"status": "ok", "message": "Membership Reconciliation Engine is running."}
-
-
-
 @app.post("/api/reconcile")
 @app.post("/api/index.py")
 @app.post("/api/index")
@@ -141,4 +138,10 @@ async def reconcile_files(
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal server error: {e!s}")
+
+from fastapi import Request
+
+@app.api_route("/{full_path:path}", methods=["GET", "POST"])
+async def catch_all(request: Request, full_path: str):
+    return {"detail": "Catch-all reached", "path": full_path, "url": str(request.url)}
 
