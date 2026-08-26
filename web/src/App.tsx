@@ -32,7 +32,9 @@ function App() {
     } catch (err: any) {
       console.error(err);
       if (err.response) {
-        setError(`Server Error (${err.response.status}): ${err.response.data?.detail || typeof err.response.data === 'string' ? err.response.data.substring(0, 100) : "Unknown error"}`);
+        const data = err.response.data;
+        const msg = data?.detail || data?.message || (typeof data === 'string' ? data.substring(0, 100) : JSON.stringify(data));
+        setError(`Server Error (${err.response.status}): ${msg}`);
       } else if (err.request) {
         setError("Network error: Could not reach the server.");
       } else {
