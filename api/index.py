@@ -25,11 +25,15 @@ app.add_middleware(
 
 
 @app.get("/api/health")
+@app.get("/api/index.py")
+@app.get("/api/index")
 def health_check():
     return {"status": "ok", "message": "Membership Reconciliation Engine is running."}
 
 
 @app.post("/api/reconcile")
+@app.post("/api/index.py")
+@app.post("/api/index")
 async def reconcile_files(
     bank_file: UploadFile = File(...),
     backend_file: UploadFile = File(...)
