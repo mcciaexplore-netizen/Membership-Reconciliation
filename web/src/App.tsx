@@ -61,7 +61,7 @@ function App() {
           <Building className="w-6 h-6 text-blue-400" />
           <h1 className="text-xl font-bold tracking-tight">MCCIA</h1>
         </div>
-        <p className="text-slate-400 text-sm font-medium mb-8">Membership Reconciliation</p>
+        <p className="text-slate-400 text-sm font-medium mb-8">Membership Reconciliation <span className="text-xs ml-2 bg-blue-900/50 text-blue-300 px-2 py-0.5 rounded">v2</span></p>
 
         <div className="flex items-center gap-2 text-xs font-bold text-slate-400 tracking-wider mb-4">
           <UploadCloud className="w-4 h-4 text-amber-400" />
