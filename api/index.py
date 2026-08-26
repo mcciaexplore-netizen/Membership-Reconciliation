@@ -5,9 +5,8 @@ from pathlib import Path
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-# Add root to python path to access src
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
+# ROOT is now the api folder (where config and src live)
+ROOT = Path(__file__).resolve().parent
 
 from src.ingest import load_config
 from src.matcher import reconcile
