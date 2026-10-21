@@ -1,0 +1,57 @@
+bank_statement:
+  required_columns:
+    - payment_date
+    - amount_paid
+    - bk_no
+  column_aliases:
+    payment_date: ["payment_date", "date", "txn_date", "value_date", "receipt_date"]
+    amount_paid: ["amount_paid", "amount", "credit", "deposit", "total"]
+    bk_no: ["bk_no", "booking_no", "reference", "voucher_ref_no", "txn_id", "payment_reference"]
+    neft_transfer_id: ["neft_transfer_id", "cheque_no", "bank_reference", "utr", "transaction_id"]
+    narration: ["payment_remark", "narration", "description", "remarks"]
+    bank_name: ["bank_name"]
+    payment_mode: ["payment_mode", "mode", "payment_method"]
+  date_formats:
+    - "%Y-%m-%d"
+    - "%d-%m-%Y"
+    - "%d/%m/%Y"
+
+backend_data:
+  required_columns:
+    - date
+    - voucher_ref_no
+    - value
+  column_aliases:
+    date: ["date", "txn_date", "booking_date", "invoice_date", "voucher_ref_date"]
+    voucher_ref_no: ["voucher_ref_no", "bk_no", "booking_no", "reference", "payment_reference"]
+    particulars: ["particulars", "member_name", "customer_name", "company_name"]
+    value: ["value", "amount", "total_amount", "invoice_amount", "gross_total"]
+    gross_total: ["gross_total", "basic_amount", "membership_fee"]
+    narration: ["narration", "description", "remarks"]
+    voucher_type: ["voucher_type", "type", "status"]
+    gstin_uin: ["gstin_uin", "gstin", "gst_no"]
+  date_formats:
+    - "%Y-%m-%d"
+    - "%d-%m-%Y"
+    - "%d/%m/%Y"
+
+matching:
+  online_date_window_days: 3
+  offline_date_window_days: 7
+  fuzzy_reference_threshold: 90
+  fuzzy_name_threshold: 80
+  offline_modes:
+    - cash
+    - cheque
+    - pos
+    - offline
+    - "11"
+
+output:
+  sheets:
+    - Matched
+    - Unmatched Bank
+    - Unmatched Backend
+    - Partial Discrepant
+    - Duplicates
+    - Summary

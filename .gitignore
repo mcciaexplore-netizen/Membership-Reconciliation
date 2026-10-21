@@ -1,0 +1,13 @@
+﻿venv/
+node_modules/
+output/
+.mypy_cache/
+.streamlit/
+__pycache__/
+*.pyc
+.DS_Store
+frontend/tmp_uploads/
+
+# Real membership data files (not for version control)
+public/*.xls
+public/*.xlsx
